@@ -2,12 +2,15 @@
 
 .env
 
+*-lock.json
+*.lock
+
+node_modules/
+
 # Webassembly
 *.log
 
 target/
 **/*/Cargo.lock
-
-node_modules/
 
 /site
