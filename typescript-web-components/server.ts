@@ -10,6 +10,7 @@ const PORT = 3000;
 const HOST_NAME = `localhost`;
 const PUBLIC_FOLDER = 'public';
 
+app.use(`/node_modules`, express.static(path.resolve('node_modules')));
 app.use(`/${PUBLIC_FOLDER}`, express.static(path.resolve(PUBLIC_FOLDER)));
 
 app.all('/*', function(req: express.Request, res: express.Response) {
