@@ -31,7 +31,32 @@ export const addTodo = (todos: Todo[], text: string): Todo[] => [
 ];
 
 // Base React Implementation
-const useTodos = (initial: Todo[]) => React.useState<Todo[]>(initial);
+const useTodos = (initial: Todo[]) => {
+  const [todos, setTodos] = React.useState<Todo[]>(initial);
+  const [newTodo, setNewTodo] = React.useState("");
+
+  return {
+    todos,
+    newTodo,
+    setNewTodo,
+    addTodo() {
+      setTodos(tl => addTodo(todos, newTodo));
+      setNewTodo("");
+    },
+    updateTodo(id: number, text: string) {
+      setTodos(tl => updateTodo(todos, id, text));
+    },
+    toggleTodo(id: number) {
+      setTodos(tl => toggleTodo(todos, id));
+    },
+    removeTodo(id: number) {
+      setTodos(tl => removeTodo(todos, id));
+    },
+    load(inTodos: Todo[]) {
+      setTodos(inTodos);
+    }
+  }
+};
 type UseTodosType = ReturnType<typeof useTodos>;
 
 const TodosContext = React.createContext<UseTodosType | null>(null);

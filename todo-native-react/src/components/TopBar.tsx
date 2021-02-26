@@ -9,12 +9,12 @@ JSON source: https://raw.githubusercontent.com/jherr/todos-four-ways/master/data
 */
 
 function TopBar() {
-  const [, setTodos] = useTodosContext();
+  const { load } = useTodosContext();
 
   return (
     <Grid pt={2} templateColumns="1fr 1fr" columnGap="3">
       <ColorModeSwitcher />
-      <Button onClick={() => setTodos(data)}>Load</Button>
+      <Button onClick={() => load(data)}>Load</Button>
     </Grid>
   );
 }

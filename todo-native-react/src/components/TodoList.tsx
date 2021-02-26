@@ -1,17 +1,17 @@
 import * as React from "react";
 import { Button, Input, Flex, Checkbox, Heading } from "@chakra-ui/react";
-import { useTodosContext, toggleTodo, updateTodo, removeTodo } from "../store";
+import { useTodosContext } from "../store";
 
 function TodoListItems() {
-  const [todos, setTodos] = useTodosContext();
+  const { todos, toggleTodo, updateTodo, removeTodo } = useTodosContext();
 
   return (
     <>
       {todos.map((todo: { id: number; text: string }) => (
         <Flex pt={2} key={todo.id}>
-          <Checkbox onClick={() => setTodos(toggleTodo(todos, todo.id))} />
-          <Input mx={2} value={todo.text} onChange={(e) => setTodos(updateTodo(todos, todo.id, e.target.value))} />
-          <Button onClick={() => setTodos(removeTodo(todos, todo.id))}>Delete</Button>
+          <Checkbox onClick={() => toggleTodo(todo.id)} />
+          <Input mx={2} value={todo.text} onChange={(e) => updateTodo(todo.id, e.target.value)} />
+          <Button onClick={() => removeTodo(todo.id)}>Delete</Button>
         </Flex>
       ))}
     </>
