@@ -13,6 +13,7 @@ let collection: TodoCollection = new TodoCollection("Practice", todos);
 console.clear();
 console.log(`${collection.userName} Todo List`);
 
+collection.removeComplete();
 collection.getTodoItems(true).forEach(item => item.printDetails());
 
 let newId: number = collection.addTodo("Go for run");
