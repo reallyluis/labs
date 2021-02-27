@@ -11,12 +11,14 @@ let todos: TodoItem[] = [
 let collection: TodoCollection = new TodoCollection("Practice", todos);
 
 console.clear();
-console.log(`${collection.userName} Todo List`);
+console.log(`${collection.userName} Todo List`
+  + `(${collection.getItemCounts().incomplete} items to do)`);
 
 collection.removeComplete();
 collection.getTodoItems(true).forEach(item => item.printDetails());
 
 let newId: number = collection.addTodo("Go for run");
+collection.markComplete(newId, true);
 let todoItem: TodoItem = collection.getTodoById(newId);
 // console.log(JSON.stringify(todoItem));
 
