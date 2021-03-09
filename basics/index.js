@@ -1,23 +1,21 @@
-let hatPrice = 100;
-console.log(`Hat price: ${hatPrice}`);
+let names = ["Hat", "Boots", "Gloves"];
+let prices = [];
 
-let bootsPrice = "100";
-console.log(`Boots price: ${bootsPrice}`);
+prices.push(100);
+prices.push("100");
+prices.push(50.25);
 
-if (hatPrice === bootsPrice) {
-  console.log("Prices are the same");
-} else {
-  console.log("Prices are different");
-}
+console.log(`First Item: ${names[0]}: ${prices[0]}`);
 
-function sumPrices(...numbers) {
-  return numbers.reduce((total, val) => {
-    return total + (Number.isNaN(Number(val)) ? 0 : Number(val));
-  }, 0);
-}
+let sumPrices = (...numbers) => numbers.reduce((total, val) =>
+  total + (Number.isNaN(Number(val)) ? 0 : Number(val)));
 
-let totalPrice = sumPrices(hatPrice, bootsPrice);
-console.log(`Total Price: ${totalPrice} ${typeof totalPrice}`);
+// let totalPrice = sumPrices(...prices);
+let totalPrice = sumPrices(...prices);
+console.log(`Total: ${totalPrice} ${typeof totalPrice}`);
+
+let combinedArray = [...names, ...prices];
+combinedArray.forEach(element => console.log(`Combined Array Element: ${element}`));
 
 totalPrice = sumPrices(100, 200, 300);
 console.log(`Total Price: ${totalPrice} ${typeof totalPrice}`);
