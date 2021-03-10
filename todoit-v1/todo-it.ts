@@ -1,6 +1,6 @@
 console.log("TodoIt");
 
-const todoList: string[] = [];
+let todoList: string[] = [];
 console.log("Current todo list: ", todoList);
 
 const todoInput: HTMLInputElement = document.getElementById('todoInput') as HTMLInputElement;
@@ -44,7 +44,7 @@ function updateTodoList(): void {
   todoList.forEach(item => {
     const li = document.createElement('li');
     li.setAttribute('class', 'todo-list-item');
-    li.innerText = item;
+    li.innerHTML = `<a href='#' onclick='removeTodoListItem("${item}")'>${item}</a>`;
     ul.appendChild(li);
   })
 }
@@ -75,4 +75,22 @@ function filterTodoList(): void {
       }
     }
   });
+}
+
+function removeTodoListItem(itemToRemove: string): void {
+  console.log("item to remove: ", itemToRemove);
+
+  todoList = todoList.filter((value: string, _index, _array) => {
+    if (value === itemToRemove) {
+      return false;
+    }
+    return true;
+  });
+  // unsafe alternative: todoList.splice(...)
+
+  // update the todo list
+  updateTodoList();
+
+  // apply the todo list filter
+  filterTodoList();
 }
